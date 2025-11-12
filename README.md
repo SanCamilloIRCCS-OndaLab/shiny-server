@@ -58,7 +58,7 @@ The drawback of this logic is that if an app is not optimized and is resource de
 
 The branch `main` of the repository is protected because it is synced with the website, which is automatically updated every time the branch main receive a new commit. (Currently the automation is not working.)
 
-In order to contribute work on a separate branch and send a pull request to merge the new app in `main`.
+In order to contribute work on a separate branch, or preferably fork the repository, and send a pull request to merge the new app in `main`.
 
 ### Implementing a new app
 
@@ -74,7 +74,7 @@ However, these are the steps required to implement a new app:
     1. `cd apps/MyNewShinyApp`
     2. `docker build -t shinyapp-newapp .`
     3. `docker run -it -p 3838:3838 shinyapp-newapp`
-    4. Open a browser, go to `http://localhost:3838` and you should see the app.
+    4. Open a browser, go to [http://localhost:3838](http://localhost:3838) and you should see the app.
 5. Add a screenshot (which will be the app logo) in `shinyproxy/templates/assets/img/apps` 
 5. Add the app to the file `application.yml` at the end of the section `specs`:
     ``` 
@@ -151,6 +151,10 @@ CMD ["R", "-q", "-e", "shiny::runApp('/app')"]
 
 ## How to run it locally
 
+> [!WARNING]
+>
+> ShinyProxy relies on docker socket to run the single apps, therefore the shinyproxy website will work **ONLY on Linux** and it will NOT work on macOS or Windows (except if using WSL2). You can always run the single dockerized apps separately.
+
 First you have to create a docker network
 
 ```bash
@@ -171,7 +175,7 @@ Then you can simply launch the docker compose file with:
 docker compose up -d
 ```
 
-You, from a browser, you will see the ShinyProxy server with all the apps at `http://localhost:8080`
+From a browser, you will see the ShinyProxy server with all the apps at [http://localhost:8080](http://localhost:8080)
 
 To stop the server
 
