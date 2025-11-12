@@ -88,6 +88,19 @@ proxy:
       contact: sara.lago@hsancamillo.it
       display-name_it: Scolarità, componenti aperiodiche dello spettro EEG e invecchiamento cognitivo
       description_it: Visualizzazione interattiva delle relazioni non lineari tra scolarità, componenti aperiodiche dello spettro EEG e invecchiamento cognitivo
+  - id: sens-spec
+    display-name: Sensitivity, Specificty and Roc explorer for neuropsychological tests
+    description: App to learn and explore using generated data the basic statistics used in neuropsychological tests
+    docker-cmd: ["R", "-e", "shiny::runApp('/root/sens-spec')"]
+    container-image: shinyapp-sens-spec
+    container-network: shinyproxy-nw
+    logo-url: /assets/img/apps/sens-spec.png
+    template-group: scientific
+    template-properties:
+      author: Giorgio Arcara
+      contact: giorgio.arcara@hsancamillo.it
+      display-name_it: Sensitività, Specificità e ROC per test neuropsicologici
+      description_it: App per conoscere ed esplorare con dati generati le statistiche base utilizzate nei test neuropsicologici
 
 
 logging:
