@@ -34,24 +34,14 @@ proxy:
   # CHANGE HERE TO ADD NEW APPS #
   ###############################
   specs:
-  - id: 01_hello
-    display-name: Hello Application
-    description: Application which demonstrates the basics of a Shiny app
-    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
-    container-image: openanalytics/shinyproxy-demo
-    container-network: shinyproxy-nw
-    logo-url: /assets/img/apps/01_hello.png
-    template-group: clinical
-    template-properties:
-      author: ShinyProxy
-      doi: 123/456
-      keywords: test; tutorial
   - id: MOCAv3
     display-name: MOCA v3
     description: Normative data for MOCA considering Age, Education, CRI, and Sex.
     docker-cmd: ["R", "-e", "shiny::runApp('/root/mocav3')"]
     container-image: shinyapp-mocav3
     container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
     logo-url: /assets/img/apps/MOCAv3.png
     template-group: clinical
     template-properties:
@@ -66,6 +56,8 @@ proxy:
     docker-cmd: ["R", "-e", "shiny::runApp('/root/erp-kw-osc')"]
     container-image: shinyapp-erpkwosc
     container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
     logo-url: /assets/img/apps/ERP_KW_OSC_PSC.png
     template-group: scientific
     template-properties:
@@ -81,6 +73,8 @@ proxy:
     docker-cmd: ["R", "-e", "shiny::runApp('/root/gamm')"]
     container-image: shinyapp-gamm
     container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
     logo-url: /assets/img/apps/GAMM.png
     template-group: scientific
     template-properties:
@@ -94,6 +88,8 @@ proxy:
     docker-cmd: ["R", "-e", "shiny::runApp('/root/sens-spec')"]
     container-image: shinyapp-sens-spec
     container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
     logo-url: /assets/img/apps/sens-spec.png
     template-group: scientific
     template-properties:
