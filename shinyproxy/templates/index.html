@@ -141,15 +141,9 @@
                         th:data-keywords="${@thymeleaf.getTemplateProperty(app.id, 'keywords') ?: ''}" >
                         <div class="card-title lang-en" th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></div>
                         <div class="card-title lang-it" th:text="${@thymeleaf.getTemplateProperty(app.id, 'display-name_it') ?: app.displayName ?: app.id}"></div>
-                        <div class="card-logo lang-en">
+                        <div class="card-logo">
                             <img class="img-responsive" th:if="${appLogos.get(app) != null}"
                                 alt="Screenshot of the app"
-                                th:with="logo=${appLogos.get(app)}" th:height="${logo.height}"
-                                th:src="${logo.src}" th:style="${logo.style}" th:width="${logo.width}">
-                        </div>
-                        <div class="card-logo lang-it">
-                            <img class="img-responsive" th:if="${appLogos.get(app) != null}"
-                                alt="Immagine dell'applicazione"
                                 th:with="logo=${appLogos.get(app)}" th:height="${logo.height}"
                                 th:src="${logo.src}" th:style="${logo.style}" th:width="${logo.width}">
                         </div>

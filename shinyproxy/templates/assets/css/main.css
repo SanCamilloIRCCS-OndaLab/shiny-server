@@ -132,10 +132,16 @@ body {
 
 .img-responsive { 
 	max-height: 150px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }
 .card .card-logo {
 	min-height: 150px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;   /* centers horizontally */
+    align-items: center;       /* centers vertically */
 }
 
 .card .card-author {
