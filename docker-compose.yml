@@ -1,7 +1,7 @@
 services:
   shinyproxy:
     image: openanalytics/shinyproxy:3.2.2
-    # container_name: shinyproxy
+    container_name: shinyproxy
     restart: unless-stopped
     volumes:
       - ./shinyproxy/application.yml:/opt/shinyproxy/application.yml:ro
