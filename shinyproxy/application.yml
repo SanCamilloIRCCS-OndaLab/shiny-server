@@ -12,6 +12,7 @@ proxy:
   template-path: ./templates/
   authentication: none
   admin-groups: admins
+  usage-stats-url: micrometer
   docker:
       internal-networking: true
   template-groups:
@@ -102,3 +103,9 @@ proxy:
 logging:
   file:
     name: shinyproxy.log
+
+management:
+  prometheus:
+    metrics:
+      export:
+        enabled: true

@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+scrape_configs:
+- job_name: shinyproxy
+  metrics_path: '/actuator/prometheus'
+  static_configs:
+    # note: this is the port of ShinyProxy Actuator service, not the port of Prometheus which is by default also 9090
+    - targets: [ 'shinyproxy:9090' ]
+      labels:
+        namespace: local
+        shinyproxy_realm: local
