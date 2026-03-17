@@ -98,7 +98,22 @@ proxy:
       contact: giorgio.arcara@hsancamillo.it
       display-name_it: Sensitività, Specificità e ROC per test neuropsicologici
       description_it: Un'app progettata per aiutare gli utenti ad apprendere ed esplorare i concetti statistici nella neuropsicologia clinica. Consente agli utenti di simulare dati ed esaminare come le classificazioni basate sui punteggi di cut-off influenzano le prestazioni diagnostiche, a seconda delle proprietà dei dati sottostanti.
-
+  - id: corr
+    display-name: Explore statistical correlation
+    description: This is a tutorial tool to explore how statistical correlation works. Enter paired X and Y values, then visualise the relationship between them. The scatterplot title shows both Pearson and Spearman correlation coefficients.
+    docker-cmd: ["R", "-e", "shiny::runApp('/root/corr')"]
+    container-image: shinyapp-corr
+    container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
+    logo-url: /assets/img/apps/corr.png
+    template-group: scientific
+    template-properties:
+      author: Giorgio Arcara
+      contact: giorgio.arcara@hsancamillo.it
+      display-name_it: Esplora la correlazione statistica
+      description_it: Un tutorial per esplorare come funziona la correlazione statistica. Aggiungi coppie di valori X e Y e visualizza la relazione tra di essi. Inoltre vengono calcolati i coefficienti di Pearson e Spearman.
+  
 
 logging:
   file:
