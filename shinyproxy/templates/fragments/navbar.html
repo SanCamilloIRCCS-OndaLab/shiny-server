@@ -10,16 +10,26 @@
     <nav class="navbar navbar-inverse navbar-fixed-top navbar-height">
       <div class="container-fluid">
         <div class="navbar-header">
+          <!-- Hamburger button (visible only on mobile) -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-menu" aria-expanded="false" aria-controls="navbar-collapse-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Logo always visible -->
+          
+          <a th:href="@{/}">
           <img class="navbar-brand navbar-brand-logo" th:src="${logo}" alt="San Camillo Logo"/>
+          </a>
           <a class="navbar-brand navbar-brand-title" th:href="@{/}" th:text="${title}"></a>
         </div>
-        <div class="navbar-menu">
+
+        <!-- Collapsible section -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-menu">
           <div class="navbar-form navbar-right">
             <a role="button" class="btn btn-primary btn-sm" id="switchInstancesModal-btn"
               th:if="${page == 'app' && appMaxInstances.get(appName) != 1}">Switch instance</a>
-
-            <!-- <a role="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#infoModal"
-              th:if="${page == 'app' && appMaxInstances.get(appName) == 1}">Info</a> -->
 
             <a role="button" class="btn btn-primary btn-sm btn-restart-app"
               onclick="Shiny.instances.eventHandlers.showAppDetails();"
@@ -48,8 +58,7 @@
                             data-toggle="modal" data-target="#reportIssueModal">Report Issue</a>
             
             <a role="button" class="btn btn-primary btn-sm" th:href="@{/admin}" th:if="${isAdmin}">Admin</a>
-            <a role="button" class="btn btn-primary btn-sm" th:href="@{${logoutUrl}}" th:if="${isLoggedIn}">Sign
-              Out</a>
+            <a role="button" class="btn btn-primary btn-sm" th:href="@{${logoutUrl}}" th:if="${isLoggedIn}">Sign Out</a>
           </div>
           <div class="navbar-right" sec:authorize="isAuthenticated()">
             <span class="navbar-text">
@@ -58,15 +67,26 @@
             </span>
           </div>
         </div>
+        <!-- /.navbar-collapse -->
       </div>
     </nav>
+
     <script>
       // fix padding of body as soon as navbar is rendered
       let navbarHeight = $('.navbar-height').height();
       if (navbarHeight !== undefined) {
         $('body').css('padding-top', navbarHeight + 'px');
       }
+
+      // Re-calculate padding after collapse toggle (menu open/close changes navbar height on mobile)
+      $('#navbar-collapse-menu').on('shown.bs.collapse hidden.bs.collapse', function () {
+        let h = $('.navbar-height').height();
+        if (h !== undefined) {
+          $('body').css('padding-top', h + 'px');
+        }
+      });
     </script>
+
     <div class="modal fade" id="reportIssueModal" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -94,80 +114,6 @@
       </div>
     </div>
 
-
-<!-- 
-    <div class="modal fade" id="infoModal" role="dialog" th:if="${page == 'app' && appMaxInstances.get(appName) == 1}">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-            </button>
-            <h4 class="modal-title">Info</h4>
-          </div>
-          <div class="modal-body">
-            <div id="appDetails">
-              <table class="table table-condensed">
-                <tbody>
-                  <tr>
-                    <td>
-                      <b>Name</b>
-                    </td>
-                    <td>
-                      <span th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></span>
-                    </td>
-                  </tr>
-                  <tr th:if="${app.description != null}">
-                    <td>
-                      <b>Description</b>
-                    </td>
-                    <td>
-                      <span th:text="${app.description}"></span>
-                    </td>
-                  </tr>
-                  <tr th:if="${@thymeleaf.getTemplateProperty(app.id, 'author')}">
-                    <td>
-                      <b>Author</b>
-                    </td>
-                    <td>
-                      <span th:text="${@thymeleaf.getTemplateProperty(app.id, 'author')}"></span>
-                    </td>
-                  </tr>
-                  <tr th:if="${@thymeleaf.getTemplateProperty(app.id, 'contact')}">
-                    <td>
-                      <b>Contact</b>
-                    </td>
-                    <td>
-                      <span th:text="${@thymeleaf.getTemplateProperty(app.id, 'contact')}"></span>
-                    </td>
-                  </tr>
-                  <tr th:if="${@thymeleaf.getTemplateProperty(app.id, 'Article')}">
-                    <td>
-                      <b>Article</b>
-                    </td>
-                    <td>
-                      <span th:text="${@thymeleaf.getTemplateProperty(app.id, 'article')}"></span>
-                    </td>
-                  </tr>
-                  <tr th:if="${@thymeleaf.getTemplateProperty(app.id, 'doi')}">
-                    <td>
-                      <b>DOI</b>
-                    </td>
-                    <td>
-                      <span th:text="${@thymeleaf.getTemplateProperty(app.id, 'doi')}"></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-default close-button" type="button">Close</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <script lang="JavaScript">
       $(document).ready(function () {
         $('input[name="currentLocation"]').val(window.location.href);
@@ -191,14 +137,13 @@
       });
 
       function setLanguage(lang) {
-        const languages = ['en', 'it']; // extend as needed
+        const languages = ['en', 'it'];
         languages.forEach(l => {
           document.querySelectorAll(`.lang-${l}`).forEach(el => el.classList.remove('visible'));
         });
         document.documentElement.lang = lang;
         document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('visible'));
-        localStorage.setItem('language', lang); // remember user choice
-        // Update search placeholder
+        localStorage.setItem('language', lang);
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
           const placeholderText = searchInput.dataset[`placeholder${lang.charAt(0).toUpperCase() + lang.slice(1)}`];
@@ -207,7 +152,6 @@
           }
         }
       }
-
     </script>
 
     <link rel="stylesheet" media="screen" th:href="@{/assets/css/main.css}" />

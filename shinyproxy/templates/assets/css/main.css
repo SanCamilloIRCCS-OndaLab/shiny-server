@@ -2,12 +2,6 @@
     --color-primary: #2f3f76;
   }
 
-/* @media (min-width: 1200px) {
-    .container {
-        width: 100%;
-    }
-} */
-
 html, body {
     height: 100%;
     margin: 0;
@@ -16,7 +10,7 @@ html, body {
   }
 
 #content {
-    flex: 1; /* Makes the main content expand */
+    flex: 1;
 }
 
 .navbar {
@@ -29,9 +23,20 @@ html, body {
     align-items: center;
 }
 
+.navbar-brand {
+    height: 0%;
+    padding: 15px 0px;
+}
+
+.navbar-form {
+    padding-left: 0px;
+}
+
 .navbar-brand-logo {
     height: 80px !important;
-    margin-left: 10px !important; 
+    margin-left: 0px !important; 
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
 }
 
 .navbar-brand-title {
@@ -39,9 +44,107 @@ html, body {
     font-weight: bold;
     color: #ffffff !important;
     margin-left: 15px !important; 
-
 }
 
+/* Hamburger button (Bootstrap 3 .navbar-toggle) */
+.navbar-toggle {
+    border-color: rgba(255, 255, 255, 0.5);
+    margin-top: auto;
+    margin-bottom: auto;
+    order: -1; /* visually first on the left inside navbar-header */
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Buttons inside the collapsible area */
+.navbar-form .btn {
+    margin: 10px 3px;
+}
+
+/* On mobile, stack the buttons vertically inside the open menu */
+@media (max-width: 767px) {
+    .navbar-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Push hamburger to the right on mobile, matching Bootstrap 3 default */
+    .navbar-toggle {
+        display: block !important; /* override bootstrap hiding it on desktop */
+        float: right;
+        margin-right: 10px;
+        margin-left: auto;
+        order: 1;
+    }
+
+    .navbar-brand-logo {
+        height: 50px !important;
+        margin-left: 15px !important;
+    }
+
+    .navbar-brand-title {
+        font-size: 14pt;
+        margin-left: 20px !important;
+    }
+
+    /* When menu is open, show buttons stacked */
+    .navbar-collapse {
+        background-color: var(--color-primary);
+        border-top: 1px solid rgba(255,255,255,0.15);
+        padding-bottom: 10px;
+    }
+
+    .navbar-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 15px;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .navbar-form .btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin: 3px 0;
+    }
+
+    /* Language buttons: inline pair */
+    .navbar-form .lang-it,
+    .navbar-form .lang-en {
+        display: inline-block;
+    }
+
+    .navbar-right .navbar-text {
+        color: #ffffff;
+        padding: 8px 15px;
+        display: block;
+    }
+}
+
+/* Desktop: hamburger hidden, everything normal */
+@media (min-width: 768px) {
+    .navbar-toggle {
+        display: none !important;
+    }
+
+    .navbar-collapse {
+        display: block !important;
+    }
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
 .footer {
     background-color: var(--color-primary);
     padding: 30px;
@@ -50,7 +153,7 @@ html, body {
     width: 100%;
   }
 
-/* Header styling */
+/* ─── Header (page header, not navbar) ───────────────────────────────────── */
 .header-container {
     display: flex;
     align-items: center;
@@ -74,6 +177,7 @@ html, body {
     font-weight: bold;
   }
 
+/* ─── Body & typography ───────────────────────────────────────────────────── */
 body {
     background-color: #f8f9fa;
 }
@@ -83,6 +187,7 @@ body {
     max-width: 800px;
     font-size: 18px;
     color: #333;
+    padding: 0 20px;
 }
 
 .description-subtitle {
@@ -106,6 +211,8 @@ body {
     margin: 10px 20px;
     padding: 0 20px;
 }
+
+/* ─── Cards ───────────────────────────────────────────────────────────────── */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -140,8 +247,8 @@ body {
 	min-height: 150px;
     margin-bottom: 10px;
     display: flex;
-    justify-content: center;   /* centers horizontally */
-    align-items: center;       /* centers vertically */
+    justify-content: center;
+    align-items: center;
 }
 
 .card .card-author {
@@ -160,12 +267,6 @@ body {
     margin-left: 4px;
     color: #555;
 }
-
-/* .card .card-contact {
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: #555;
-} */
 
 .card .card-description {
     font-size: 14px;
@@ -186,6 +287,7 @@ body {
     color: #777;
 }
 
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
 .btn {
     display: inline-block;
     margin-top: 10px;
@@ -209,7 +311,7 @@ body {
     color: white;
 }
 
-/* Languages */
+/* ─── Languages ───────────────────────────────────────────────────────────── */
 .lang-en, .lang-it {
     display: none;
 }
@@ -222,6 +324,7 @@ body {
     display: none !important;
 }
 
+/* ─── Forms ───────────────────────────────────────────────────────────────── */
 .form-group {
     display: flex;
     align-items: center;
@@ -241,7 +344,7 @@ label {
     padding-bottom: 40px;
 }
 
-/* Responsive tweaks for cards and layout */
+/* ─── Responsive cards & layout ──────────────────────────────────────────── */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -256,16 +359,6 @@ label {
       max-width: 95vw;
       padding: 15px;
       margin: 15px auto;
-    }
-  
-    .navbar-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-brand-title {
-      font-size: 18pt;
-      margin-left: 10px !important;
     }
   
     .form-group {
@@ -301,4 +394,3 @@ label {
       padding: 8px 12px;
     }
   }
-  
