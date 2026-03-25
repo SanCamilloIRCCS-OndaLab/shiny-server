@@ -6,9 +6,44 @@ The server is [ShinyProxy](https://www.shinyproxy.io/) which allows concurrent u
 
 Moreover, ShinyProxy works with completely isolated docker containers, one for each app (indeed, one for each session...). Therefore, each app is independent and can use a different version of R and different packages.
 
+Here the list of the currently implemented apps:
+
+#### Clinical Support
+
+- [MOCA v3](https://app.hsancamillo.it/app/MOCAv3) - Normative data for MOCA considering Age, Education, CRI, and Sex.
+
+#### Scientific Communication
+
+- [Mapping ERP amplitudes on form-to-meaning computations](https://app.hsancamillo.it/app/erp-kw-osc) - Visualizing the interplay between Orthography- and Phonology-Semantics Consistency (OSC and PSC) and ERP amplitude during a lexical decision task.
+- [Education, EEG Aperiodic Components and Cognitive Aging](https://app.hsancamillo.it/app/gamm) - Interactive visualization of non-linear relationships between aperiodic EEG components, age and education
+- [Sensitivity, Specificty and Roc explorer for neuropsychological tests](https://app.hsancamillo.it/app/sens-spec) - An app designed to help users learn and explore statistical concepts in clinical neuropsychology. It allows users to simulate data and examine how classifications based on cut-off scores influence diagnostic performance, depending on the underlying data properties.
+- [Explore statistical correlation](https://app.hsancamillo.it/app/corr) - This is a tutorial tool to explore how statistical correlation works. Enter paired X and Y values, then visualise the relationship between them. The scatterplot title shows both Pearson and Spearman correlation coefficients.
+
+## About ShinyProxy
+
+[ShinyProxy](https://www.shinyproxy.io/) is a useful opensource tool to easily serve applications as shinyapps, jupyter notebooks and others.
+
+The easiest way to deploy a new app with ShinyProxy is to create a docker image hosting the full and working app.
+
+Each image is registered in the ShinyProxy configuration file (`application.yml`). Once someone open the app ShinyProxy will spawn a new docker instance of the app. In this way each user session is completely independent from the others and no interaction issues will arise.
+
+The drawback of this logic is that if an app is not optimized and is resource demanding, if multiple users will access the app simultaneously, mutiple docker instances of the resource demanding app will be created, affecting the resources of the entire server.
+
+## Include apps on your website
+
+Apps can be easily embedded in external website by using an iframe.
+
+For example:
+```html
+<iframe src="https://app.hsancamillo.it/app/MOCAv3" height="600" width="100%" title="MOCA v3"></iframe>
+```
+
+It is also possible to include the app without the header, by appending to the url the parameter `?sp_hide_navbar=true` (e.g. https://app.hsancamillo.it/app/MOCAv3?sp_hide_navbar=true).
+In this case you are always required to clearly indicate that the embedded app has been developed by the San Camillo Hospital.
+
 ## General structure of the repository
 
-The server used is [ShinyProxy](https://www.shinyproxy.io/), which is deployed in its dockerized version (`docker-compose.yml`).
+The server used is ShinyProxy, which is deployed in its dockerized version (see [docker-compose.yml](./docker-compose.yml)).
 
 Current ShinyProxy version: `3.1.1`
 
@@ -41,16 +76,6 @@ template-properties:
 Folders `assets` and `templates` contains useful files for rendering the website.
 
 All the applications are stored in the folder `apps`. Each application should be stored in a separate folder and is implemented in completely independent way. Each application must be dockerized.
-
-## About ShinyProxy
-
-ShinyProxy is a useful opensource tool to easily serve applications as shinyapps, jupyter notebooks and others.
-
-The easiest way to deploy a new app with ShinyProxy is to create a docker image hosting the full and working app.
-
-Each image is registered in the ShinyProxy configuration file (`application.yml`). Once someone open the app ShinyProxy will spawn a new docker instance of the app. In this way each user session is completely independent from the others and no interaction issues will arise.
-
-The drawback of this logic is that if an app is not optimized and is resource demanding, if multiple users will access the app simultaneously, mutiple docker instances of the resource demanding app will be created, affecting the resources of the entire server.
 
 ## Deploying new apps
 
