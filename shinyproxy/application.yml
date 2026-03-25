@@ -1,6 +1,10 @@
 ###########################
 # SETTINGS FOR SHINYPROXY #
 ###########################
+server:
+  frame-options: disable
+  secure-cookies: true
+
 proxy:
   ##########################
   # DO NOT CHANGE ANYTHING #
@@ -9,6 +13,7 @@ proxy:
   logo-url: file:///opt/shinyproxy/templates/assets/img/logo_sc/sancamillo_logo_white.png
   favicon-path: /opt/shinyproxy/templates/assets/img/favicon/favicon.ico
   port: 8080
+  same-site-cookie: None
   template-path: ./templates/
   authentication: none
   admin-groups: admins
