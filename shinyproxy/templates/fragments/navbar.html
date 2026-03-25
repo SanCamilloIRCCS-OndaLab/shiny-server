@@ -19,10 +19,10 @@
           </button>
           <!-- Logo always visible -->
           
-          <a th:href="@{/}">
+          <a th:href="@{/}" th:target="${page == 'app'} ? '_blank' : '_self'">
           <img class="navbar-brand navbar-brand-logo" th:src="${logo}" alt="San Camillo Logo"/>
           </a>
-          <a class="navbar-brand navbar-brand-title" th:href="@{/}" th:text="${title}"></a>
+          <a class="navbar-brand navbar-brand-title" th:href="@{/}" th:target="${page == 'app'} ? '_blank' : '_self'" th:text="${title}"></a>
         </div>
 
         <!-- Collapsible section -->
