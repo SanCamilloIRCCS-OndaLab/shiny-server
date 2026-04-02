@@ -118,6 +118,21 @@ proxy:
       contact: giorgio.arcara@hsancamillo.it
       display-name_it: Esplora la correlazione statistica
       description_it: Un tutorial per esplorare come funziona la correlazione statistica. Aggiungi coppie di valori X e Y e visualizza la relazione tra di essi. Inoltre vengono calcolati i coefficienti di Pearson e Spearman.
+  - id: zscore_crawfordt1
+    display-name: Single Case vs. Normative Sample
+    description: This tool compares a single observed score against a simulated normative sample. Set the sample parameters, simulate the distribution, and enter an individual score to obtain z-score, percentile, and optionally the Crawford & Howell (1998) modified t-statistic.
+    docker-cmd: ["R", "-e", "shiny::runApp('/root/zscore_crawfordt1')"]
+    container-image: shinyapp-zscore_crawfordt1
+    container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
+    logo-url: /assets/img/apps/Zscore_CrawfordT1.png
+    template-group: scientific
+    template-properties:
+      author: Giorgio Arcara
+      contact: giorgio.arcara@hsancamillo.it
+      display-name_it: Caso Singolo vs. Campione Normativo
+      description_it: Questo strumento confronta un punteggio osservato singolo con un campione normativo simulato. Imposta i parametri del campione, simula la distribuzione e inserisci un punteggio individuale per ottenere z-score, percentile e, opzionalmente, il t-test modificato di Crawford & Howell (1998).
   
 
 logging:

@@ -1,0 +1,1 @@
+docker build -t shinyapp-zscore_crawfordt1 .
