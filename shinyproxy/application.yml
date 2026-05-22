@@ -29,6 +29,10 @@ proxy:
       properties:
         display-name: Scientific Communication
         display-name_it: Lavori Scientifici
+    - id: teaching
+      properties:
+        display-name: Teaching
+        display-name_it: Didattica
 
 # External files
 # spring:
@@ -97,7 +101,7 @@ proxy:
     minimum-seats-available: 5
     seats-per-container: 20
     logo-url: /assets/img/apps/sens-spec.png
-    template-group: scientific
+    template-group: teaching
     template-properties:
       author: Giorgio Arcara
       contact: giorgio.arcara@hsancamillo.it
@@ -112,7 +116,7 @@ proxy:
     minimum-seats-available: 5
     seats-per-container: 20
     logo-url: /assets/img/apps/corr.png
-    template-group: scientific
+    template-group: teaching
     template-properties:
       author: Giorgio Arcara
       contact: giorgio.arcara@hsancamillo.it
@@ -127,12 +131,27 @@ proxy:
     minimum-seats-available: 5
     seats-per-container: 20
     logo-url: /assets/img/apps/Zscore_CrawfordT1.png
-    template-group: scientific
+    template-group: teaching
     template-properties:
       author: Giorgio Arcara
       contact: giorgio.arcara@hsancamillo.it
       display-name_it: Caso Singolo vs. Campione Normativo
       description_it: Questo strumento confronta un punteggio osservato singolo con un campione normativo simulato. Imposta i parametri del campione, simula la distribuzione e inserisci un punteggio individuale per ottenere z-score, percentile e, opzionalmente, il t-test modificato di Crawford & Howell (1998).
+  - id: t-test
+    display-name: A Simulation-Based Tutorial for the Independent Samples t-Test
+    description: This interactive Shiny application teaches null hypothesis significance testing through simulation. Users set population parameters for two groups and repeatedly draw samples, building an empirical t-distribution in real time. Equal means simulate H₀, making type I error visible as the proportion of t-values crossing the critical threshold by chance. Unequal means shift the distribution, to estimate statistical power.
+    docker-cmd: ["R", "-e", "shiny::runApp('/root/t-test')"]
+    container-image: shinyapp-t-test
+    container-network: shinyproxy-nw
+    minimum-seats-available: 5
+    seats-per-container: 20
+    logo-url: /assets/img/apps/t-test.png
+    template-group: teaching
+    template-properties:
+      author: Giorgio Arcara
+      contact: giorgio.arcara@hsancamillo.it
+      display-name_it: Un tutorial basato sulla simulazione per il t-test su campioni indipendenti
+      description_it: Questa applicazione interattiva illustra il test di significatività dell'ipotesi nulla attraverso la simulazione. Gli utenti impostano i parametri di popolazione per due gruppi ed estraggono ripetutamente dei campioni, costruendo in tempo reale una distribuzione t empirica. Le medie uguali simulano l'ipotesi H₀, rendendo visibile l'errore di tipo I come la percentuale di valori t che superano la soglia critica per caso. Le medie disuguali spostano la distribuzione, per stimare la potenza statistica.
   
 
 logging:
